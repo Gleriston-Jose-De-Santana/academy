@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+<title>Projeto Acadmy</title>
+<meta name="author" content="Gleriston Santana">
+<link rel="stylesheet" href="css/style.css">
+<script src="https://kit.fontawesome.com/006642858d.js"></script>
+<link href="http://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,600&family=Ubuntu&family=work+Sans&display=swap" rel="stylesheet"></link>
+</head>
+<body>
+
+	<div style="margin: 0; text-align: center" class="alert alert-warning alert-dismissible fade show"
+		role="alert">
+		<strong>Seja bem vindo: <span th:text="${session.usuarioLogado.user}"></span></strong>
+		<button type="button" class="btn-close" data-bs-dismiss="alert"
+			aria-label="Close"></button>
+	</div>
+
+	<div th:replace="fragments/fragmentos :: cabecalho"></div>
+      <section class="neo-section" style="background-image: url('/img/bg-index.jpg');">
+         <div class="sombra"></div>
+         <div class="center neo-container">
+            <h1>Sistema de Gerenciamento de Alunos</h1>
+         
+         <div class="botoes">
+            
+            <div class="wm">
+              <button th:href="@{inserirAlunos}" class="btn btn-primary">CADASTRAR ALUNO</button>
+            </div>
+            <div class="wmm">
+              <button th:href="@{alunos-adicionados}" style="text-align: right" class="btn btn-success">ENCONTRAR ALUNO</button>
+            </div>
+            <div class="clear"></div>
+         </div>
+        </div>
+      </section>
+      
+      <!-- Inicio do Modal -->
+      
+      <div class="modal fade" id="modalPesquisa">
+      	<div class="modal-dialog modal-lg">
+      		<div class="modal-content">
+      			<div class="modal-header">
+      				<h5 class="modal-title">Encontre um aluno</h5>
+      				<button type="button" class="close" data-dismiss="modal">
+      					<span>&times;</span>
+      				</button>
+      			</div>
+      			
+      			<form method="post" action="pesquisar-aluno" th:object="${aluno}">
+      				
+      				<div class="modal-body">
+      					<input type="text" placeholder="Digite o nome do aluno" th:field="*{nome}" class="form-control">
+      				</div>
+      					<div class="modal-footer">
+      						<button class="btn btn-danger" data-dismiss="modal">Fechar</button>
+      						<button type="submit" class="btn btn-sucess">Pesquisar</button>
+      					</div>
+      			</form>
+      			
+      		</div>
+      	</div>
+      </div>
+      
+      <div th:replace="fragments/fragmentos :: rodape"></div>
+      
+      <script type="text/javascript" src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+      <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+      
+</body>
+</html>
